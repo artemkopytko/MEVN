@@ -1,8 +1,11 @@
 /**
  * Created by artemkopytko on 03.05.17.
  */
- import Home from '@/components/HelloWorld.vue'
- import Posts from '@/components/Posts.vue'
+
+import Home from '@/components/HelloWorld.vue'
+import Posts from '@/components/Posts.vue'
+import NewPost from '@/components/NewPost.vue'
+
 // import Home from './components/Home/Home.vue'
 // import Portfolio from './components/Portfolio/Portfolio.vue'
 // import Blog from './components/Blog/Blog.vue'
@@ -48,7 +51,8 @@
 // };
 
 export const routes = [
-    { path: '', component: Home, name: 'home'},
-    { path: '/posts', component: Posts, name:'posts'},
+    { path: '', component: Home, name: 'Home'},
+    { path: '/posts', component: Posts, name:'Posts'},
+    { path: '/posts/new', component: NewPost, name: 'NewPost'},
     { path: '*', redirect:'/' }
 ];

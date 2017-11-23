@@ -19,13 +19,22 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
+// app.get('/posts', (req, res) => {
+//   res.send(
+//     [{
+//       title: "Hello World!",
+//       description: "Hi there! How are you?"
+//     }]
+//   )
+// })
+
 app.get('/posts', (req, res) => {
-  res.send(
-    [{
-      title: "Hello World!",
-      description: "Hi there! How are you?"
-    }]
-  )
+    Post.find({}, 'title description', function (error, posts) {
+    if (error) { console.error(error); }
+    res.send({
+        posts: posts
+    })
+}).sort({_id:-1})
 })
 
 app.post('/posts', (req, res) => {
