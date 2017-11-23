@@ -28,6 +28,7 @@ app.use(cors())
 //   )
 // })
 
+//fetch all posts
 app.get('/posts', (req, res) => {
     Post.find({}, 'title description', function (error, posts) {
     if (error) { console.error(error); }
@@ -37,6 +38,7 @@ app.get('/posts', (req, res) => {
 }).sort({_id:-1})
 })
 
+//add new post
 app.post('/posts', (req, res) => {
   var db = req.db;
   var title = req.body.title;
@@ -57,5 +59,32 @@ app.post('/posts', (req, res) => {
   })
 })
 
+// Fetch single post
+app.get('/post/:id', (req, res) => {
+    var db = req.db;
+    Post.findById(req.params.id, 'title description', function (error, post) {
+        if (error) { console.error(error); }
+        res.send(post)
+    })
+})
+
+//update a post
+app.put('/posts/:id', (req, res) => {
+    var db = req.db;
+    Post.findById(req.params.id, 'title description', function (error, post) {
+        if (error) { console.error(error); }
+
+        post.title = req.body.title
+        post.description = req.body.description
+        post.save(function (error) {
+            if (error) {
+                console.log(error)
+            }
+            res.send({
+                success: true
+            })
+        })
+    })
+})
 
 app.listen(process.env.PORT || 8081)

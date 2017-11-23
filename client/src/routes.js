@@ -5,6 +5,7 @@
 import Home from '@/components/HelloWorld.vue'
 import Posts from '@/components/Posts.vue'
 import NewPost from '@/components/NewPost.vue'
+import EditPost from '@/components/EditPost.vue'
 
 // import Home from './components/Home/Home.vue'
 // import Portfolio from './components/Portfolio/Portfolio.vue'
@@ -51,8 +52,9 @@ import NewPost from '@/components/NewPost.vue'
 // };
 
 export const routes = [
-    { path: '', component: Home, name: 'Home'},
-    { path: '/posts', component: Posts, name:'Posts'},
-    { path: '/posts/new', component: NewPost, name: 'NewPost'},
-    { path: '*', redirect:'/' }
+  { path: '', component: Home, name: 'Home'},
+  { path: '/posts', component: Posts, name:'Posts'},
+  { path: '/posts/new', component: NewPost, name: 'NewPost'},
+  { path: '/posts/:id', component: EditPost, name: 'EditPost'},
+  { path: '*', redirect:'/' }
 ];
